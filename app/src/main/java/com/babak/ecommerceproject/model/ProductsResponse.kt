@@ -1,3 +1,3 @@
 package com.babak.ecommerceproject.model
 
-data class ProductsResponse(val products: ArrayList<ProductsResponseItem>)
+data class ProductsResponse(val products: List<ProductsResponseItem>)

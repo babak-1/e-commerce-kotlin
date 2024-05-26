@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.babak.ecommerceproject.databinding.FragmentHomeBinding
 
 
@@ -28,6 +29,10 @@ class HomeFragment : Fragment() {
         binding.rvHome.adapter=adapter
         observedData()
         viewModel.requestAllProducts()
+        adapter.onClickProduct={
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it))
+        }
+
     }
     fun observedData(){
         viewModel.allProducts.observe(viewLifecycleOwner){

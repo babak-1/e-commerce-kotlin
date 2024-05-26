@@ -16,6 +16,7 @@ class HomeViewModel : ViewModel() {
 
     private val _allProducts = MutableLiveData<ProductsResponse>()
     val allProducts: LiveData<ProductsResponse> = _allProducts
+    val error =MutableLiveData<String?>()
 
     fun requestAllProducts() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -31,6 +32,9 @@ class HomeViewModel : ViewModel() {
 
                 }
             }catch (e:Exception){
+                withContext(Dispatchers.Main){
+                    error.value=e.localizedMessage?:""
+                }
 
             }
         }

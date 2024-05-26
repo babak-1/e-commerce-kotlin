@@ -8,6 +8,7 @@ import com.babak.ecommerceproject.model.ProductsResponseItem
 
 class HomeAdapter:RecyclerView.Adapter<HomeAdapter.CardViewHolder>(){
     private val list = arrayListOf<ProductsResponseItem>()
+    lateinit var onClickProduct:(String)->Unit
 
     inner class CardViewHolder(var cardItemBinding: CardItemBinding):RecyclerView.ViewHolder(cardItemBinding.root)
 
@@ -23,7 +24,9 @@ class HomeAdapter:RecyclerView.Adapter<HomeAdapter.CardViewHolder>(){
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         var item=list[position]
         holder.cardItemBinding.productTitle.text=item.title
-
+        holder.cardItemBinding.cardView.setOnClickListener {
+            onClickProduct(item.id.toString())
+        }
     }
 
 
