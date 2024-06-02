@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface ApiServer {
     @GET("api/v1/products")
-    suspend fun getAllProducts():Response<ProductsResponse>
+    suspend fun getAllProducts():Response<List<ProductsResponseItem>>
 
     @GET("api/v1/products")
     suspend fun getProduct(@Path("id")id:String):Response<ProductsResponseItem>

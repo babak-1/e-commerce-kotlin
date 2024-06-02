@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.babak.ecommerceproject.databinding.CardItemBinding
 import com.babak.ecommerceproject.model.ProductsResponseItem
+import com.babak.ecommerceproject.utils.imageLoad
 
 class HomeAdapter:RecyclerView.Adapter<HomeAdapter.CardViewHolder>(){
     private val list = arrayListOf<ProductsResponseItem>()
@@ -24,6 +25,9 @@ class HomeAdapter:RecyclerView.Adapter<HomeAdapter.CardViewHolder>(){
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         var item=list[position]
         holder.cardItemBinding.productTitle.text=item.title
+        holder.cardItemBinding.productImage.imageLoad(item.images?.get(0) ?:"")
+        holder.cardItemBinding.productsPrice.text ="${item.price.toString()}$"
+        holder.cardItemBinding.productsCategory.text=item.category?.name
         holder.cardItemBinding.cardView.setOnClickListener {
             onClickProduct(item.id.toString())
         }

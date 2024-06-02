@@ -13,7 +13,7 @@ import com.babak.ecommerceproject.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     var _binding:FragmentHomeBinding?=null
     val binding get() = _binding!!
-    var adapter=HomeAdapter()
+    val adapter=HomeAdapter()
     val viewModel by viewModels<HomeViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvHome.adapter=adapter
         observedData()
-        viewModel.requestAllProducts()
+//        viewModel.requestAllProducts()
         adapter.onClickProduct={
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it))
         }
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
     }
     fun observedData(){
         viewModel.allProducts.observe(viewLifecycleOwner){
-        adapter.updateList(it.products)
+        adapter.updateList(it)
         }
     }
 
